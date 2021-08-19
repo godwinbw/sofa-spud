@@ -28,6 +28,7 @@ const typeDefs = gql`
   type Query {
     user: User
     titles: [Title]
+    title(title: String!): Title
   }
 
   type Mutation {
@@ -58,7 +59,7 @@ const typeDefs = gql`
     ): User
 
     removeTitleFromWatchlist(imdbId: String!): User
-    
+    searchTitle(title: String!): Title
   }
 `;
 
