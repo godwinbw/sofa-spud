@@ -14,8 +14,11 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
-    titles: async (parent, args, context) => {
-      
+    titles: async() => {
+      return Title.find();
+    },
+    title: async( parent, { title }) => {
+      return Title.findOne({ title });
     }
   },
   Mutation: {

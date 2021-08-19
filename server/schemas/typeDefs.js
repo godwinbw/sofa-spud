@@ -59,7 +59,6 @@ const typeDefs = gql`
     ): User
 
     removeTitleFromWatchlist(imdbId: String!): User
-    searchTitle(title: String!): Title
   }
 `;
 
