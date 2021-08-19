@@ -8,7 +8,7 @@ const titleSchema = new Schema({
   },
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   titleType: {
     type: String,

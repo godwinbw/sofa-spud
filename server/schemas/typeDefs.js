@@ -45,6 +45,18 @@ const typeDefs = gql`
     ): User
 
     login(email: String!, password: String!): Auth
+
+    addTitleToWatchlist(
+      imdbId: String!
+      title: String!
+      titleType: String
+      year: String
+      plot: String
+      imageUrl: String
+      thumbRating: String
+    ): User
+
+    removeTitleFromWatchlist(imdbId: String!): User
   }
 `;
 

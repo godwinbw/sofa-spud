@@ -50,6 +50,30 @@ const resolvers = {
 
       return { token, user };
     },
+
+    addTitleToWatchlist: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { watchList: args } },
+          { new: true, runValidators: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeTitleFromWatchlist: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { watchList: { imdbId: args.imdbId } } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
 };
 
