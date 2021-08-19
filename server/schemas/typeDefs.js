@@ -27,6 +27,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    titles: [Title]
   }
 
   type Mutation {
@@ -57,6 +58,7 @@ const typeDefs = gql`
     ): User
 
     removeTitleFromWatchlist(imdbId: String!): User
+    
   }
 `;
 
