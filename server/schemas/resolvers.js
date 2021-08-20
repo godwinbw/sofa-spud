@@ -13,12 +13,6 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError("Not logged in");
-    },
-    titles: async() => {
-      return Title.find();
-    },
-    title: async( parent, { title }) => {
-      return Title.findOne({ title });
     }
   },
   Mutation: {
