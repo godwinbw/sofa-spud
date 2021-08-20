@@ -1,11 +1,23 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type Title {
+    _id: ID
+    imdbId: String
+    title: String
+    titleType: String
+    year: String
+    plot: String
+    imageUrl: String
+    thumbRating: String
+  }
+
   type User {
     _id: ID
     firstName: String
     lastName: String
     email: String
+    watchList: [Title]
   }
 
   type Auth {
@@ -33,6 +45,18 @@ const typeDefs = gql`
     ): User
 
     login(email: String!, password: String!): Auth
+
+    addTitleToWatchlist(
+      imdbId: String!
+      title: String!
+      titleType: String
+      year: String
+      plot: String
+      imageUrl: String
+      thumbRating: String
+    ): User
+
+    removeTitleFromWatchlist(imdbId: String!): User
   }
 `;
 
