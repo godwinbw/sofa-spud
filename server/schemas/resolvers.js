@@ -13,7 +13,7 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError("Not logged in");
-    }
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -68,6 +68,42 @@ const resolvers = {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { watchList: { imdbId: args.imdbId } } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsUp: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsUp" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsDown: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsDown" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleClearThumbRating: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $unset: { "watchList.$.thumbRating": "" } },
           { new: true }
         );
       }
