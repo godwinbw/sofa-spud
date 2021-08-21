@@ -1,18 +1,16 @@
 import React from 'react';
-import { Route, NavLink, HashRouter, Switch } from 'react-router-dom';
-import Login from '../pages/Login';
-import Signup from '../pages/signup';
-
-import React from 'react';
+// import { Route, NavLink, HashRouter, Switch } from 'react-router-dom';
+// import Login from '../pages/Login';
+// import Signup from '../pages/signup';
 import { Link } from 'react-router-dom';
 
-import Auth from '../../utils/auth';
+// import Auth from '../utils/auth';
 
 const Header = () => {
-    const logout = event => {
-        event.preventDefault();
-        Auth.logout();
-    };
+    // const logout = event => {
+    //     event.preventDefault();
+    //     Auth.logout();
+    // };
 
     return (
         <header className="bg-secondary mb-4 py-2 flex-row align-center">
@@ -22,20 +20,21 @@ const Header = () => {
                 </Link>
 
                 <nav className="text-center">
-                    {Auth.loggedIn() ? (
+                    {/* {Auth.loggedIn() ? ( */}
                         <>
                         {/* link to whatever wec all it will need to be changed from profile */}
                             <Link to="/profile">Me</Link>
-                            <a href="/" onClick={logout}>
+                            {/* add onClick={logout} */}
+                            <a href="/" >
                                 Logout
                             </a>
                         </>
-                    ) : (
+                    {/* ) : ( */}
                         <>
                             <Link to="/login">Login</Link>
                             <Link to="/signup">Signup</Link>
                         </>
-                    )}
+                    {/* )} */}
                 </nav>
             </div>
         </header>

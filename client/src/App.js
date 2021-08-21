@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import SearchBooks from './pages/SearchBooks';
 // import SavedBooks from './pages/SavedBooks';
-import Navbar from './components/Header';
+import Header from './components/Header';
 
 function App() {
   return (
     <Router>
       <>
-        <Navbar />
+        <Header />
         <Switch>
           {/* <Route exact path='/' component={SearchBooks} />
           <Route exact path='/saved' component={SavedBooks} />
