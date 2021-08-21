@@ -9,4 +9,4 @@ const Login = () => {
     )
 }
 
-export default LoginForm;
+export default Login;
