@@ -2,7 +2,10 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Title } = require("../models");
 const { signToken } = require("../utils/auth");
 const { searchRapidApiForTitles } = require("../utils/rapid-api-imdb");
-const { searchTmdbForTitles } = require("../utils/tmdb-api");
+const {
+  searchTmdbForTitles,
+  searchTmdbForSimilarTitles,
+} = require("../utils/tmdb-api");
 
 const resolvers = {
   Query: {
@@ -22,6 +25,10 @@ const resolvers = {
 
     searchForTitlesTmdbApi: async (parent, args, context) => {
       return await searchTmdbForTitles(args.searchString);
+    },
+
+    searchForSimilarTitlesTmdbApi: async (parent, args, contect) => {
+      return await searchTmdbForSimilarTitles(args.imdbId, args.titleType);
     },
   },
   Mutation: {
