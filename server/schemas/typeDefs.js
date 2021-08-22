@@ -28,6 +28,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    searchForTitles(searchString: String!): [Title]
   }
 
   type Mutation {
