@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Title } = require("../models");
 const { signToken } = require("../utils/auth");
 const { searchRapidApiForTitles } = require("../utils/rapid-api-imdb");
+const { searchTmdbForTitles } = require("../utils/tmdb-api");
 
 const resolvers = {
   Query: {
@@ -15,8 +16,12 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    searchForTitles: async (parent, args, context) => {
+    searchForTitlesRapidApi: async (parent, args, context) => {
       return await searchRapidApiForTitles(args.searchString);
+    },
+
+    searchForTitlesTmdbApi: async (parent, args, context) => {
+      return await searchTmdbForTitles(args.searchString);
     },
   },
   Mutation: {

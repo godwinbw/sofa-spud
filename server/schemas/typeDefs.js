@@ -28,7 +28,8 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    searchForTitles(searchString: String!): [Title]
+    searchForTitlesRapidApi(searchString: String!): [Title]
+    searchForTitlesTmdbApi(searchString: String!): [Title]
   }
 
   type Mutation {
