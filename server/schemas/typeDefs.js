@@ -18,6 +18,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     watchList: [Title]
+    watchListCount: Int
   }
 
   type Auth {
@@ -57,6 +58,12 @@ const typeDefs = gql`
     ): User
 
     removeTitleFromWatchlist(imdbId: String!): User
+
+    updateWatchListTitleThumbsUp(imdbId: String!): User
+
+    updateWatchListTitleThumbsDown(imdbId: String!): User
+
+    updateWatchListTitleClearThumbRating(imdbId: String!): User
   }
 `;
 

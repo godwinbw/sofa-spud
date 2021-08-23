@@ -13,17 +13,17 @@ const Header = () => {
     // };
 
     return (
-        <header className="bg-secondary mb-4 py-2 flex-row align-center">
-            <div className="container flex-row justify-space-between-lg justify-center align-center">
+        <header>
+            <div>
                 <Link to="/">
                     <h1>Movies</h1>
                 </Link>
 
-                <nav className="text-center">
+                <nav>
                     {/* {Auth.loggedIn() ? ( */}
                         <>
                         {/* link to whatever wec all it will need to be changed from profile */}
-                            <Link to="/profile">Me</Link>
+                            <Link to="/profile">??</Link>
                             {/* add onClick={logout} */}
                             <a href="/" >
                                 Logout

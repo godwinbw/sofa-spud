@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order } = require("../models");
+const { User, Title } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -68,6 +68,42 @@ const resolvers = {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { watchList: { imdbId: args.imdbId } } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsUp: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsUp" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsDown: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsDown" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleClearThumbRating: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $unset: { "watchList.$.thumbRating": "" } },
           { new: true }
         );
       }
