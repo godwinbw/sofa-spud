@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/godwinbw/sofa-spud/issues"
   },
-  "homepage": "https://github.com/godwinbw/sofa-spud#readme"
+  "homepage": "https://github.com/godwinbw/sofa-spud#readme",
+  "dependencies": {
+    "@apollo/client": "^3.4.8"
+  }
 }
