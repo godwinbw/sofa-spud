@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+/*
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -23,15 +24,46 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+*/
 
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        firstName
+        lastName
+        email
+        watchListCount
+        watchList {
+          imdbId
+          title
+          titleType
+          year
+          plot
+          imageUrl
+          thumbRating
+        }
+      }
+    }
+  }
+`;
+
+/*
 export const ADD_USER = gql`
   mutation addUser(
-    $firstname: String!
+    $firstName: String!
     $lastName: String!
     $email: String!
     $password: String!
   ) {
-    addUser(firstName: $firstname, email: $email, password: $password) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       token
       user {
         _id
@@ -48,6 +80,41 @@ export const ADD_USER = gql`
           imageURL
           thumbRating
         }
+      }
+    }
+  }
+`;
+*/
+
+export const ADD_USER = gql`
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        firstName
+        email
+        lastName
+        _id
+        watchList {
+          imdbId
+          title
+          titleType
+          year
+          plot
+          imageUrl
+          thumbRating
+        }
+        watchListCount
       }
     }
   }

@@ -7,7 +7,12 @@ import { useMutation } from "@apollo/react-hooks";
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ firstName: '',lastName: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   // set state for form validation
   const [validated] = useState(false);
@@ -31,6 +36,8 @@ const SignupForm = () => {
       event.stopPropagation();
     }
 
+    console.log("userFormData = ", userFormData);
+
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
@@ -48,11 +55,10 @@ const SignupForm = () => {
     }
 
     setUserFormData({
-      firstName: '',
-      lasName: '',
-      email: '',
-      password: '',
-
+      firstName: "",
+      lasName: "",
+      email: "",
+      password: "",
     });
   };
 
@@ -86,20 +92,22 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='lastName'>Last Name</Form.Label>
+          <Form.Label htmlFor="lastName">Last Name</Form.Label>
           <Form.Control
-            type='text'
-            placeholder='Your lastName'
-            name='lastName'
+            type="text"
+            placeholder="Your lastName"
+            name="lastName"
             onChange={handleInputChange}
             value={userFormData.lastName}
             required
           />
-          <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Last Name is required!
+          </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label htmlFor="email">Email</Form.Label>
 
           <Form.Control
             type="email"
@@ -129,10 +137,17 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-
+          disabled={
+            !(
+              userFormData.firstName &&
+              userFormData.lastName &&
+              userFormData.email &&
+              userFormData.password
+            )
+          }
+          type="submit"
+          variant="success"
+        >
           Submit
         </Button>
       </Form>
