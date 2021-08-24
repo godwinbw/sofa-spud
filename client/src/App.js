@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, inMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Navbar from './components/Navbar';
+import SearchTitles from './components/searchTitles';
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -34,6 +35,7 @@ function App() {
         <Switch>
           
         </Switch>
+        <SearchTitles />
       </>
     </Router>
     </ApolloProvider>

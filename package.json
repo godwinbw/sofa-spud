@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/godwinbw/sofa-spud#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@apollo/client": "^3.4.8",
     "@apollo/react-hooks": "^4.0.0"
+=======
+    "@apollo/client": "^3.4.8"
+>>>>>>> 222b6ce7286ba52bf64a7bca78a6720e072f41a9
   }
 }

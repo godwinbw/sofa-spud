@@ -57,7 +57,6 @@ export const SAVE_SHOW = gql`
       plot
       imageURL
       thumbRating
-      }
     }
   }
 `;

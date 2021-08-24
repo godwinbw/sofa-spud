@@ -8,12 +8,13 @@ export const GET_USER = gql `
         email
         bookCount
         savedTitles {
-            imdbId
-            authors
-            title
-            description
-            image
-            link
+            imdbId: String
+            title: String
+            titleType: String
+            year: String
+            plot: String
+            imageUrl: String
+            thumbRating: String
         }
     }
 }
