@@ -19,9 +19,9 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    searchForTitlesRapidApi: async (parent, args, context) => {
-      return await searchRapidApiForTitles(args.searchString);
-    },
+    //searchForTitlesRapidApi: async (parent, args, context) => {
+    //  return await searchRapidApiForTitles(args.searchString);
+    //},
 
     searchForTitlesTmdbApi: async (parent, args, context) => {
       return await searchTmdbForTitles(args.searchString);

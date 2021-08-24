@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 
 const tmdb_api_key = "5b7f224d89cf4d43cf872ec5313641fc";
-const tmdb_secure_base_url = "https://image.tmdb.org/t/p/original";
+const tmdb_secure_base_url = "https://image.tmdb.org/t/p/w300";
 
 const options = {
   method: "GET",

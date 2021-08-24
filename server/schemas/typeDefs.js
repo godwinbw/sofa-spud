@@ -28,7 +28,6 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    searchForTitlesRapidApi(searchString: String!): [Title]
     searchForTitlesTmdbApi(searchString: String!): [Title]
     searchForSimilarTitlesTmdbApi(imdbId: String!, titleType: String!): [Title]
   }
