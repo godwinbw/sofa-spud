@@ -6,7 +6,7 @@ export const GET_USER = gql `
         _id
         username
         email
-        bookCount
+        watchListCount
         savedTitles {
             imdbId: String
             title: String
