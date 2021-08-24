@@ -3,20 +3,21 @@ import { gql } from "@apollo/client";
 export const GET_USER = gql`
   {
     user {
-      _id
       firstName
       lastName
+      _id
       email
-      watchListCount
       watchList {
-        imdbId: String
-        title: String
-        titleType: String
-        year: String
-        plot: String
-        imageUrl: String
-        thumbRating: String
+        thumbRating
+        imageUrl
+        plot
+        year
+        titleType
+        title
+        imdbId
+        _id
       }
+      watchListCount
     }
   }
 `;
