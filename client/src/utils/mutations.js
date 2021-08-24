@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -7,8 +7,10 @@ export const LOGIN_USER = gql`
       user {
         _id
         firstName
+        lastName
         email
-        savedShows {
+        watchListCount
+        watchList {
           imdbId
           title
           titleType
@@ -23,14 +25,21 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($firstname: String!, $email: String!, $password: String!) {
+  mutation addUser(
+    $firstname: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
     addUser(firstName: $firstname, email: $email, password: $password) {
       token
       user {
         _id
         firstName
+        lastName
         email
-        savedShows {
+        watchListCount
+        watchList {
           imdbId
           title
           titleType
@@ -45,30 +54,119 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_SHOW = gql`
-  mutation saveShow($input: showInput!) {
-    saveShow(input: $input) {
+  mutation saveShow(
+    $imdbId: String!
+    $title: String!
+    $titleType: String
+    $year: String
+    $plot: String
+    $imageUrl: String
+    $thumbRating: String
+  ) {
+    addTitleToWatchList(
+      imdbId: $imdbId
+      title: $title
+      titleType: $titleType
+      year: $year
+      plot: $plot
+      imageUrl: $imageUrl
+      thumbRating: $thumbRating
+    )
+    user {
       _id
-      firstname
+      firstName
+      lastName
       email
-      imdbId
-      title
-      titleType
-      year
-      plot
-      imageURL
-      thumbRating
+      watchListCount
+      watchList {
+        imdbId
+        title
+        titleType
+        year
+        plot
+        imageURL
+        thumbRating
       }
     }
   }
 `;
 
 export const REMOVE_SHOW = gql`
-  mutation removeShow($showId: String!) {
-    removeShow(imdbId: $showId) {
+  mutation removeShow($imdbId: String!) {
+    removeTitleFromWatchList(imdbId: $imdbId)
+    user {
       _id
-      firstname
+      firstName
+      lastName
       email
-      savedBooks {
+      watchListCount
+      watchList {
+        imdbId
+        title
+        titleType
+        year
+        plot
+        imageURL
+        thumbRating
+      }
+    }
+  }
+`;
+
+export const SET_THUMBS_UP = gql`
+  mutation setThumbsUp($imdbId: String!) {
+    updateWatchListTitleThumbsUp(imdbId: $imdbId)
+    user {
+      _id
+      firstName
+      lastName
+      email
+      watchListCount
+      watchList {
+        imdbId
+        title
+        titleType
+        year
+        plot
+        imageURL
+        thumbRating
+      }
+    }
+  }
+`;
+
+export const SET_THUMBS_DOWN = gql`
+  mutation setThumbsDown($imdbId: String!) {
+    updateWatchListTitleThumbsDown(imdbId: $imdbId)
+    user {
+      _id
+      firstName
+      lastName
+      email
+      watchListCount
+      watchList {
+        imdbId
+        title
+        titleType
+        year
+        plot
+        imageURL
+        thumbRating
+      }
+    }
+  }
+`;
+
+export const CLEAR_THUMB_RATING = gql`
+  mutation clearThumbRating($imdbId: String!) {
+    updateWatchListTitleClearThumbRating(imdbId: $imdbId)
+    user {
+      _id
+      firstName
+      lastName
+      email
+      watchListCount
+      watchList {
         imdbId
         title
         titleType

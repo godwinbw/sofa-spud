@@ -18,5 +18,16 @@
   },
   "dependencies": {
     "jwt-decode": "^3.1.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godwinbw/sofa-spud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/godwinbw/sofa-spud/issues"
+  },
+  "homepage": "https://github.com/godwinbw/sofa-spud#readme",
+  "dependencies": {
+    "@apollo/client": "^3.4.8",
+    "@apollo/react-hooks": "^4.0.0"
   }
 }
