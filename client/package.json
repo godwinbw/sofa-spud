@@ -5,10 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "@apollo/client": "^3.4.8",
-<<<<<<< HEAD
     "@apollo/react-hooks": "^4.0.0",
-=======
->>>>>>> 222b6ce7286ba52bf64a7bca78a6720e072f41a9
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
