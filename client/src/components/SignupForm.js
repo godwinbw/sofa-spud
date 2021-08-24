@@ -7,11 +7,8 @@ import { useMutation } from "@apollo/react-hooks";
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({
-    firstName: "",
-    email: "",
-    password: "",
-  });
+  const [userFormData, setUserFormData] = useState({ firstName: '',lastName: '', email: '', password: '' });
+
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -51,9 +48,11 @@ const SignupForm = () => {
     }
 
     setUserFormData({
-      firstName: "",
-      email: "",
-      password: "",
+      firstName: '',
+      lasName: '',
+      email: '',
+      password: '',
+
     });
   };
 
@@ -87,7 +86,21 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label htmlFor='lastName'>Last Name</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Your lastName'
+            name='lastName'
+            onChange={handleInputChange}
+            value={userFormData.lastName}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='email'>Email</Form.Label>
+
           <Form.Control
             type="email"
             placeholder="Your email address"
@@ -116,16 +129,10 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={
-            !(
-              userFormData.firstName &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
-          type="submit"
-          variant="success"
-        >
+          disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
+          type='submit'
+          variant='success'>
+
           Submit
         </Button>
       </Form>
