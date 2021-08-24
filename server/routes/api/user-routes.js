@@ -17,6 +17,6 @@ router.route('/login').post(login);
 
 router.route('/me').get(authMiddleware, getSingleUser);
 
-router.route('/books/:bookId').delete(authMiddleware, removeTitleFromWatchlist);
+router.route('/movies/:movieId').delete(authMiddleware, removeTitleFromWatchlist);
 
 module.exports = router;

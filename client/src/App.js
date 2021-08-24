@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 import Navbar from "./components/Navbar";
-import SearchTitles from "./components/searchTitles";
+import SearchMovies from "./pages/SearchMovies";
 import SavedShows from "./pages/savedShows";
 
 const httpLink = createHttpLink({
@@ -34,9 +34,10 @@ function App() {
         <>
           <Navbar />
           <Switch>
+            <Route exact path="/" component={SearchMovies} />
             <Route exact path="/saved" component={SavedShows} />
+            <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
-          <SearchTitles />
         </>
       </Router>
     </ApolloProvider>

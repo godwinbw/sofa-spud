@@ -23,8 +23,8 @@ export const GET_USER = gql`
 `;
 
 export const SEARCH_FOR_TITLES = gql`
-  query searchForTitles($imdbId: String!) {
-    searchForTitlesTmdbApi(searchString: $imdbId) {
+  query searchForTitles($searchString: String!) {
+    searchForTitlesTmdbApi(searchString: $searchString) {
       imdbId
       title
       titleType
