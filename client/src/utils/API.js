@@ -38,7 +38,7 @@ export const getMe = (token) => {
     });
   };
   
-  // remove saved book data for a logged in user
+
   export const deleteMovie = (movieId, token) => {
     return fetch(`/api/users/movies/${movieId}`, {
       method: 'DELETE',
@@ -48,6 +48,6 @@ export const getMe = (token) => {
     });
   };
   
-  export const searchGoogleBooks = (query) => {
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+  export const searchMovieDatabase = (query) => {
+    return fetch(`https://api.themoviedb.org/3/search/movie?api_key=6213928e68cf638d9dc3b863ee0b34f0&language=en-US&query=${query}&page=1&include_adult=false`);
   };
