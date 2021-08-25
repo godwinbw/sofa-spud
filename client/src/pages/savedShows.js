@@ -34,7 +34,7 @@ const SavedShows = () => {
       if (!response) {
         throw new Error("something went wrong!");
       }
-      removeTitleId(titleId);
+      removeTitleId(imdbId);
     } catch (err) {
       console.error(error);
     }
