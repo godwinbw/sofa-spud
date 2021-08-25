@@ -24,7 +24,7 @@ export const getSavedTitleIds = () => {
       return false;
     }
   
-    const updatedSavedTitleIds = savedTitleIds?.filter((savedTitleId) => savedTitleId !== TitleId);
+    const updatedSavedTitleIds = savedTitleIds?.filter((savedTitleId) => savedTitleId !== titleId);
     localStorage.setItem('saved_titles', JSON.stringify(updatedSavedTitleIds));
   
     return true;
