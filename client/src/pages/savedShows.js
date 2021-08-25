@@ -9,7 +9,7 @@ import {
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
 import Auth from "../utils/auth";
-//import { removeBookId, saveBookIds } from "../utils/localStorage";
+import { removeTitleId } from "../utils/localStorage";
 
 import { GET_USER } from "../utils/queries";
 import { REMOVE_SHOW } from "../utils/mutations";
@@ -34,7 +34,7 @@ const SavedShows = () => {
       if (!response) {
         throw new Error("something went wrong!");
       }
-      //removeBookId(bookId);
+      removeTitleId(imdbId);
     } catch (err) {
       console.error(error);
     }
@@ -52,7 +52,7 @@ const SavedShows = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light bg-primary">
         <Container>
           <h1>Viewing saved shows!</h1>
         </Container>
@@ -66,24 +66,24 @@ const SavedShows = () => {
             : "You have no saved shows!"}
         </h2>
         <CardColumns>
-          {userData.watchList.map((show) => {
+          {userData.watchList.map((title) => {
             return (
-              <Card key={show.imdbId} border="dark">
-                {show.imageUrl ? (
+              <Card key={title.imdbId} border="dark">
+                {title.imageUrl ? (
                   <Card.Img
-                    src={show.imageUrl}
-                    alt={`The poster for ${show.title}`}
+                    src={title.imageUrl}
+                    alt={`The poster for ${title.title}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{show.title}</Card.Title>
-                  <p className="small">{show.titleType}</p>
-                  <p className="small">{show.year}</p>
-                  <Card.Text>{show.plot}</Card.Text>
+                  <Card.Title>{title.title}</Card.Title>
+                  <p className="small">{title.titleType}</p>
+                  <p className="small">{title.year}</p>
+                  <Card.Text>{title.plot}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteShow(show.imdbId)}
+                    onClick={() => handleDeleteShow(title.imdbId)}
                   >
                     Delete this Show!
                   </Button>
