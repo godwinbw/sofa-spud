@@ -52,7 +52,7 @@ const SavedShows = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light bg-primary">
         <Container>
           <h1>Viewing saved shows!</h1>
         </Container>
