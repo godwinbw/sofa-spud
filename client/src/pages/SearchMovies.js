@@ -16,25 +16,25 @@ import { SAVE_SHOW } from "../utils/mutations";
 import { SEARCH_FOR_TITLES } from "../utils/queries";
 
 //import { searchMovieDatabase } from '../utils/API';
-//import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import { saveTitleIds, getSavedTitleIds } from '../utils/localStorage';
 
 const SearchMovies = () => {
-  const [searchedMovies, setSearchedMovies] = useState([]);
+  const [searchedTitles, setSearchedTitles] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
-  const [saveMovie, { error }] = useMutation(SAVE_SHOW);
+  const [saveTitle, { error }] = useMutation(SAVE_SHOW);
   const [searchForTitles, { loading, data }] = useLazyQuery(SEARCH_FOR_TITLES);
 
   // this is local storage stuff, will comment out for now
 
-  /*
-  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
+  
+  const [savedTitleIds, setSavedTitleIds] = useState(getSavedTitleIds());
 
   
   useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
+    return () => saveTitleIds(savedTitleIds);
   });
-  */
+  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -75,10 +75,10 @@ const SearchMovies = () => {
     */
   };
 
-  /*
-  const handleSaveMovie = async (movieId) => {
-    const movieToSave = searchedMovies.find(
-      (movie) => movie.movieId === movieId
+  
+  const handleSaveTitle = async (titleId) => {
+    const titleToSave = searchedTitles.find(
+      (title) => title.titleId === titleId
     );
 
     // get token
@@ -89,19 +89,19 @@ const SearchMovies = () => {
     }
 
     try {
-      const response = await saveMovie(movieToSave, token);
+      const response = await saveTitle(titleToSave, token);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
 
       // if book successfully saves to user's account, save book id to state
-      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+      setSavedTitleIds([...savedTitleIds, titleToSave.titleId]);
     } catch (err) {
       console.error(err);
     }
   };
-  */
+  
 
   // check to see if we are searching for movies
   if (loading) {
@@ -148,18 +148,18 @@ const SearchMovies = () => {
           <CardColumns>
             {data.searchForTitlesTmdbApi.map((movie) => {
               return (
-                <Card key={movie.imdbId} border="dark">
-                  {movie.imageUrl ? (
+                <Card key={title.imdbId} border="dark">
+                  {title.imageUrl ? (
                     <Card.Img
-                      src={movie.imageUrl}
+                      src={title.imageUrl}
                       alt={`The poster for ${movie.title}`}
                       variant="top"
                     />
                   ) : null}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Title>{title.title}</Card.Title>
                     <p className="small">Type: {movie.titleType}</p>
-                    <Card.Text>{movie.plot}</Card.Text>
+                    <Card.Text>{title.plot}</Card.Text>
 
                     {/*
                       need to implement local storage to keep track of saved movies
