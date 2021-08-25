@@ -6,7 +6,9 @@ import {
   Form,
   Button,
   Card,
+  Row,
   CardColumns,
+  CardGroup,
 } from "react-bootstrap";
 
 import { useLazyQuery, useMutation } from "@apollo/react-hooks";
@@ -110,7 +112,7 @@ const SearchMovies = () => {
 
   return (
     <>
-      {/* <Jumbotron fluid className="text-light bg-dark"> */}
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for Movies!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -133,21 +135,25 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      {/* </Jumbotron> */}
+      </Jumbotron>
 
       <Container>
+      {/* <CardColumns> */}
         <h2>
           {data &&
           data.searchForTitlesTmdbApi &&
           data.searchForTitlesTmdbApi.length
             ? `Viewing ${data.searchForTitlesTmdbApi.length} results:`
-            : "Search for a movie to begin"}
+            // "Search for a movie to begin"
+            : ""}
         </h2>
         {console.log("data => ", data)}
         {data && data.searchForTitlesTmdbApi ? (
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '19rem' }}>
             {data.searchForTitlesTmdbApi.map((movie) => {
               return (
+                <Row>
+                <CardGroup>
                 <Card key={movie.imdbId} border="dark">
                   {movie.imageUrl ? (
                     <Card.Img
@@ -182,10 +188,13 @@ const SearchMovies = () => {
                           */}
                   </Card.Body>
                 </Card>
+                </CardGroup>
+                </Row>
               );
             })}
           </Card>
         ) : null}
+        {/* </CardColumns> */}
       </Container>
     </>
   );
