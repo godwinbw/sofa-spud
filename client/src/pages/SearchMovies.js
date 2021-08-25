@@ -110,7 +110,7 @@ const SearchMovies = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      {/* <Jumbotron fluid className="text-light bg-dark"> */}
         <Container>
           <h1>Search for Movies!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -133,7 +133,7 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
+      {/* </Jumbotron> */}
 
       <Container>
         <h2>
@@ -145,7 +145,7 @@ const SearchMovies = () => {
         </h2>
         {console.log("data => ", data)}
         {data && data.searchForTitlesTmdbApi ? (
-          <CardColumns>
+          <Card style={{ width: '18rem' }}>
             {data.searchForTitlesTmdbApi.map((movie) => {
               return (
                 <Card key={movie.imdbId} border="dark">
@@ -184,7 +184,7 @@ const SearchMovies = () => {
                 </Card>
               );
             })}
-          </CardColumns>
+          </Card>
         ) : null}
       </Container>
     </>
