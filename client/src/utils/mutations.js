@@ -175,7 +175,7 @@ export const SAVE_SHOW = gql`
       titleType: $titleType
       year: $year
       plot: $plot
-      imageUrl: $importUrl
+      imageUrl: $imageUrl
     ) {
       firstName
       email
