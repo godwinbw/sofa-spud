@@ -18,6 +18,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     watchList: [Title]
+    watchListCount: Int
   }
 
   type Auth {
@@ -27,6 +28,8 @@ const typeDefs = gql`
 
   type Query {
     user: User
+    searchForTitlesTmdbApi(searchString: String!): [Title]
+    searchForSimilarTitlesTmdbApi(imdbId: String!, titleType: String!): [Title]
   }
 
   type Mutation {
@@ -57,6 +60,12 @@ const typeDefs = gql`
     ): User
 
     removeTitleFromWatchlist(imdbId: String!): User
+
+    updateWatchListTitleThumbsUp(imdbId: String!): User
+
+    updateWatchListTitleThumbsDown(imdbId: String!): User
+
+    updateWatchListTitleClearThumbRating(imdbId: String!): User
   }
 `;
 

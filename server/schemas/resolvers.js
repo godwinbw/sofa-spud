@@ -1,7 +1,11 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Title } = require("../models");
 const { signToken } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const { searchRapidApiForTitles } = require("../utils/rapid-api-imdb");
+const {
+  searchTmdbForTitles,
+  searchTmdbForSimilarTitles,
+} = require("../utils/tmdb-api");
 
 const resolvers = {
   Query: {
@@ -13,7 +17,19 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError("Not logged in");
-    }
+    },
+
+    //searchForTitlesRapidApi: async (parent, args, context) => {
+    //  return await searchRapidApiForTitles(args.searchString);
+    //},
+
+    searchForTitlesTmdbApi: async (parent, args, context) => {
+      return await searchTmdbForTitles(args.searchString);
+    },
+
+    searchForSimilarTitlesTmdbApi: async (parent, args, contect) => {
+      return await searchTmdbForSimilarTitles(args.imdbId, args.titleType);
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -68,6 +84,42 @@ const resolvers = {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { watchList: { imdbId: args.imdbId } } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsUp: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsUp" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleThumbsDown: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $set: { "watchList.$.thumbRating": "thumbsDown" } },
+          { new: true }
+        );
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    updateWatchListTitleClearThumbRating: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOneAndUpdate(
+          { _id: context.user._id, "watchList.imdbId": args.imdbId },
+          { $unset: { "watchList.$.thumbRating": "" } },
           { new: true }
         );
       }
