@@ -9,7 +9,7 @@ import {
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
 import Auth from "../utils/auth";
-//import { removeBookId, saveBookIds } from "../utils/localStorage";
+import { removeTitleId} from "../utils/localStorage";
 
 import { GET_USER } from "../utils/queries";
 import { REMOVE_SHOW } from "../utils/mutations";

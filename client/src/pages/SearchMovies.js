@@ -148,18 +148,18 @@ const SearchMovies = () => {
           <CardColumns>
             {data.searchForTitlesTmdbApi.map((movie) => {
               return (
-                <Card key={movie.imdbId} border="dark">
-                  {movie.imageUrl ? (
+                <Card key={title.imdbId} border="dark">
+                  {title.imageUrl ? (
                     <Card.Img
-                      src={movie.imageUrl}
+                      src={title.imageUrl}
                       alt={`The poster for ${movie.title}`}
                       variant="top"
                     />
                   ) : null}
                   <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Title>{title.title}</Card.Title>
                     <p className="small">Type: {movie.titleType}</p>
-                    <Card.Text>{movie.plot}</Card.Text>
+                    <Card.Text>{title.plot}</Card.Text>
 
                     {/*
                       need to implement local storage to keep track of saved movies
