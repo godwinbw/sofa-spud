@@ -21,8 +21,12 @@ module.exports = {
 
       if ("results" in json) {
         json.results.forEach(async (title) => {
-          if (title.media_type == "movie" || title.media_type == "tv") {
-            // this is a valid title - it is a movie or tv show
+          if (
+            (title.media_type == "movie" || title.media_type == "tv") &&
+            title.id &&
+            title.title
+          ) {
+            // this is a valid title - it is a movie or tv show, and it has an id & a title
             let thisTitle = {};
 
             thisTitle.imdbId = title.id;
@@ -69,20 +73,22 @@ module.exports = {
 
         if ("results" in json) {
           json.results.forEach(async (title) => {
-            // this is a valid title - it is a movie or tv show
-            let thisTitle = {};
+            if (title.id && title.title) {
+              // this is a valid title - it is a movie or tv show & has an id & a title
+              let thisTitle = {};
 
-            thisTitle.imdbId = title.id;
+              thisTitle.imdbId = title.id;
 
-            //console.log(title);
-            thisTitle.title = title.title;
-            thisTitle.titleType = titleType;
-            thisTitle.year = title.release_date;
-            thisTitle.imageUrl = tmdb_secure_base_url + title.poster_path;
-            thisTitle.plot = title.overview;
+              //console.log(title);
+              thisTitle.title = title.title;
+              thisTitle.titleType = titleType;
+              thisTitle.year = title.release_date;
+              thisTitle.imageUrl = tmdb_secure_base_url + title.poster_path;
+              thisTitle.plot = title.overview;
 
-            // add thisTitle to the return list
-            titleList.push(thisTitle);
+              // add thisTitle to the return list
+              titleList.push(thisTitle);
+            }
           });
 
           return titleList;
