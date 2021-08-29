@@ -1,10 +1,6 @@
 #Sofa-Spud
 
 
-![sofa](https://user-images.githubusercontent.com/79726069/131258624-7afeec32-51c4-4a09-a93d-7b02dbe8a166.PNG)
-![sofa2](https://user-images.githubusercontent.com/79726069/131258628-ea889134-b649-46ba-9bef-ce1cf75c7862.PNG)
-
-
 
 ## User Story
 AS a sofa spud a.k.a couch potato
